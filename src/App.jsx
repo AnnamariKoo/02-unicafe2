@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Statistics = (props) => <div> {props.value} </div>;
+const Statistics = (props) => <div></div>;
 
 const Button = ({ handleClick, text }) => (
   <button onClick={handleClick}>{text}</button>
@@ -12,12 +12,14 @@ const App = () => {
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
   const [total, setTotal] = useState(0);
+  const [average, setAverage] = useState(0);
 
   const goodClick = () => {
     console.log("Jihuu");
     const updatedGood = good + 1;
     setGood(updatedGood);
     setTotal(updatedGood + neutral + bad);
+    setAverage(updatedGood - bad);
   };
 
   const neutralClick = () => {
@@ -32,6 +34,7 @@ const App = () => {
     const updatedBad = bad + 1;
     setBad(updatedBad);
     setTotal(good + neutral + updatedBad);
+    setAverage(good - updatedBad);
   };
 
   return (
@@ -45,7 +48,7 @@ const App = () => {
       <p>neutral {neutral}</p>
       <p>bad {bad}</p>
       <p>total {total}</p>
-      <p>average</p>
+      <p>average {average}</p>
     </div>
   );
 };
